@@ -5,14 +5,14 @@ public class Model {
     public static final String INTERMEDIATE_SMALLER = "The number is smaller. ";
     public static final String STRANGE_INTERMEDIATE_BIGGER = "Why did you enter a number greater than the range starts with?) ";
     public static final String STRANGE_INTERMEDIATE_SMALLER = "Why did you enter a number less than the starting range?) ";
-    private String strangeInput = "";
-    private String intermediateAnswer = "";
+    static private String strangeInput = "";
+    static private String intermediateAnswer = "";
     public static ArrayList<Integer> allAnswers = new ArrayList<Integer>();
     private static int nextMin;
     private static int nextMax;
-    int random;
+    static int random;
 
-    public boolean guessInt(int num){
+    public static boolean guessInt(int num){
         if( num == random ){
             allAnswers.add(num);
             return false;
@@ -37,14 +37,14 @@ public class Model {
         }
     }
 
-    public void setRandom(){
+    public static void setRandom(){
         random = (int)Math.ceil(Math.random()*
                 (nextMax - nextMin - 1) + nextMin);
     }
 
-    public void setPrimaryBarrier(int minBarrier, int maxBarrier){
-        this.nextMin = minBarrier;
-        this.nextMax = maxBarrier;
+    public static void setPrimaryBarrier(int minBarrier, int maxBarrier){
+        nextMin = minBarrier;
+        nextMax = maxBarrier;
     }
 
     public String getIntermediateAnswer(){
