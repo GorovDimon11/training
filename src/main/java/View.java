@@ -8,7 +8,7 @@ public class View {
     }
 
     public static String printRange(){
-        return Model.getNextMin() + " and " + Model.getNextMax() + " :";
+        return (Model.getNextMin()) + " and " + (Model.getNextMax()) + " (not including) :";
     }
 
     public static String printAnswersArray(){
