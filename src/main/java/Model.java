@@ -8,10 +8,9 @@ public class Model {
     private String strangeInput = "";
     private String intermediateAnswer = "";
     public static ArrayList<Integer> allAnswers = new ArrayList<Integer>();
-    private static int defaultMin = 0;
-    private static int defaultMax = 100;
-    private static int nextMin = defaultMin;
-    private static int nextMax = defaultMax;
+    private static int nextMin /*= defaultMin*/;
+    private static int nextMax /*= defaultMax*/;
+    int random;
 
     public boolean guessInt(int num, int random){
         if( num == random ){
@@ -19,7 +18,7 @@ public class Model {
             return false;
         }else if( num < random ){
 
-            if(num > nextMin && num > defaultMin) {
+            if(num > nextMin /*&& num > defaultMin*/) {
                 allAnswers.add(num);
                 nextMin = num;
                 strangeInput = "";
@@ -28,7 +27,7 @@ public class Model {
             return true;
         }else{
 
-            if(num < nextMax && num < defaultMax) {
+            if(num < nextMax /*&& num < defaultMax*/) {
                 allAnswers.add(num);
                 nextMax = num;
                 strangeInput = "";
@@ -36,6 +35,16 @@ public class Model {
             intermediateAnswer = INTERMEDIATE_SMALLER;
             return true;
         }
+    }
+
+    public void setRandom(){
+        random = (int)Math.ceil(Math.random()*
+                (nextMax - nextMin - 1) + nextMin);
+    }
+
+    public void setPrimaryBarrier(int minBarrier, int maxBarrier){
+        this.nextMin = minBarrier;
+        this.nextMax = maxBarrier;
     }
 
     public String getIntermediateAnswer(){
