@@ -13,13 +13,10 @@ public class Controller {
     public void processUser(){
 
         Scanner sc = new Scanner(System.in);
-        Random random = new Random();
-        int num = random.nextInt(101);
-        model.setRandom();
         model.setPrimaryBarrier(GlobalConstants.PRIMARY_MIN_BARRIER,
                 GlobalConstants.PRIMARY_MAX_BARRIER);
-
-        while(model.guessInt(inputNumberWithScanner(sc),num)){
+        model.setRandom();
+        while(model.guessInt(inputNumberWithScanner(sc))){
             view.printMessage(model.getIntermediateAnswer());
         }
 
