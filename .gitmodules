@@ -1,3 +1,3 @@
-[submodule "Task2(GameGuessNumber)/src"]
-	path = Task2(GameGuessNumber)/src
-	url = C:\\Users\\NITRO\\IdeaProjects\\TRAINING\\GIThub\\Task2(GameGuessNumber)\\src
+[submodule "src"]
+	path = src
+	url = C:\\Users\\NITRO\\IdeaProjects\\TRAINING\\GIThub\\src
