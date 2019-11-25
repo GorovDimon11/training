@@ -8,17 +8,17 @@ public class Model {
     private String strangeInput = "";
     private String intermediateAnswer = "";
     public static ArrayList<Integer> allAnswers = new ArrayList<Integer>();
-    private static int nextMin /*= defaultMin*/;
-    private static int nextMax /*= defaultMax*/;
+    private static int nextMin;
+    private static int nextMax;
     int random;
 
-    public boolean guessInt(int num, int random){
+    public boolean guessInt(int num){
         if( num == random ){
             allAnswers.add(num);
             return false;
         }else if( num < random ){
 
-            if(num > nextMin /*&& num > defaultMin*/) {
+            if(num > nextMin) {
                 allAnswers.add(num);
                 nextMin = num;
                 strangeInput = "";
@@ -27,7 +27,7 @@ public class Model {
             return true;
         }else{
 
-            if(num < nextMax /*&& num < defaultMax*/) {
+            if(num < nextMax) {
                 allAnswers.add(num);
                 nextMax = num;
                 strangeInput = "";
