@@ -4,17 +4,21 @@ public class Controller {
     Model Model = new Model();
     View View = new View();
 
-    public Controller(Triangle.Model model, Triangle.View view) {
-        Model = model;
-        View = view;
+    public Controller(Model model, View view) {
+        this.Model = model;
+        this.View = view;
     }
 
 
     public void processUser() {
-        Point p1 = new Side(1,1);
-        System.out.println();
-    }
+        Side s1 = new Side(0,0, 3, 0);
+        Side s2 = new Side(3,0, 0,4);
+        Side s3 = new Side(0,4, 0,4);
+        Triangle t1 = new Triangle( s1, s2, s3);
+        
 
+    }
+/*
     public class Side extends Point {
         double x2;
         double y2;
@@ -34,4 +38,5 @@ public class Controller {
             return Math.sqrt(Math.pow((x2 - x),2)  + Math.pow((y2 - y),2));
         }
     }
+    */
 }
