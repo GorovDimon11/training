@@ -1,13 +1,14 @@
 package View;
 
 public interface ConstantMessages {
-    String INPUT_STRING_DATA = "Input only correct string data";
+    String CHOOSE_LANGUAGE = "Оберіть мову! Choose language! \n 1 - Українська\n 2 - English ";
+    String INPUT_STRING_DATA = "input.string.data";
     String INPUT_INT_DATA = "Input only correct integer data";
     String SURNAME_NAME = "Please, input Your Surname";
-    String NAME = "Please, input Your Name";
+    String NAME = "input.first.name.data";
     String PATRONOMIC_NAME = "Please, input Your Patronymic";
-    String WRONG_INPUT_DATA = "You entered the data incorrectly. Please repeat.";
-    String NICKNAME = "Please, input Your Nickname";
+    String WRONG_INPUT_DATA = "input.wrong.data";
+    String NICKNAME = "input.login.data";
     String COMMENT = "Please, input Comment";
     String GROUP = "Please, input Your Group";
     String HOME_PHONE = "Please, input Your Home phone";

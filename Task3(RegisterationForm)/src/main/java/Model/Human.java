@@ -10,6 +10,11 @@ public class Human {
     }
 
     private String Full_name;
+    private String Surname;
+    private String Firstname;
+
+
+    private String Patronymic;
     private String NickName;
     private String Comment;
     private Group Group;
@@ -40,7 +45,7 @@ public class Human {
     }
 
     public void setFull_name(String full_name) {
-        Full_name = full_name;
+        this.Full_name = this.Surname +" " +this.Firstname +" "+this.Patronymic;
     }
 
     public void setNickName(String nickName) {
@@ -77,5 +82,36 @@ public class Human {
 
     public void setEditDate(Date editDate) {
         EditDate = editDate;
+    }
+
+    public void setSurname(String surname) {
+        Surname = surname;
+    }
+
+    public void setFirstname(String firstname) {
+        Firstname = firstname;
+    }
+
+    public void setPatronymic(String patronymic) {
+        Patronymic = patronymic;
+    }
+
+    @Override
+    public String toString() {
+        return "Human{" +
+                "Full_name='" + Full_name + '\''+'\n' +
+                "\t Surname='" + Surname + '\''+'\n' +
+                "\t Firstname='" + Firstname + '\''+'\n' +
+                "\t Patronymic='" + Patronymic + '\''+'\n' +
+                "\t NickName='" + NickName + '\''+'\n' +
+                "\t Comment='" + Comment + '\''+'\n' +
+                "\t Group=" + Group + '\n' +
+                "\t Telephones=" + Telephones +'\n'+
+                "\t E_mail='" + E_mail + '\'' +'\n'+
+                "\t Skype='" + Skype + '\''+'\n' +
+                "\t Address=" + Address +'\n'+
+                "\t EnterDate=" + EnterDate +'\n'+
+                "\t EditDate=" + EditDate +'\n'+
+                '}';
     }
 }

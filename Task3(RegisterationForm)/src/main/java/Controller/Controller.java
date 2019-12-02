@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Model;
 import View.View;
+import Model.Human;
 
 import java.util.Scanner;
 
@@ -16,10 +17,12 @@ public class Controller {
 
     public void processUser() {
         Scanner sc = new Scanner(System.in);
-        /*
+
         InputNoteNoteBook inputNoteNoteBook =
                 new InputNoteNoteBook(view, sc);
-        inputNoteNoteBook.inputNote();
-        */
+        Human h1 = new Human();
+        inputNoteNoteBook.inputNote(h1);
+        System.out.println(h1.toString());
+
     }
 }
