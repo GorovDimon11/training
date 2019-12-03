@@ -44,8 +44,24 @@ public class Human {
     public Human() {
     }
 
-    public void setFull_name(String full_name) {
-        this.Full_name = this.Surname +" " +this.Firstname +" "+this.Patronymic;
+    public String setFull_name(String full_name) {
+        String in = concatenationINString(this.Firstname, ".",this.Patronymic,".");
+        return this.Full_name = concatenationString(this.Surname," ", in);
+    }
+// TODO set FullName with StreamBuilder as: Surname + " " + N + "." + P + "."
+    public String concatenationString(String... message){
+        StringBuilder concatString = new StringBuilder();
+        for(String v : message) {
+            concatString = concatString.append(v);
+        }
+        return new String(concatString);
+    }
+    public String concatenationINString(String... message){
+        StringBuilder concatString = new StringBuilder();
+        for(String v : message) {
+            concatString = concatString.append(v.indexOf(0));
+        }
+        return new String(concatString);
     }
 
     public void setNickName(String nickName) {
@@ -99,7 +115,7 @@ public class Human {
     @Override
     public String toString() {
         return "Human{" +
-                "Full_name='" + Full_name + '\''+'\n' +
+                "Full_name='" + setFull_name(this.Full_name) + '\''+'\n' +
                 "\t Surname='" + Surname + '\''+'\n' +
                 "\t Firstname='" + Firstname + '\''+'\n' +
                 "\t Patronymic='" + Patronymic + '\''+'\n' +
