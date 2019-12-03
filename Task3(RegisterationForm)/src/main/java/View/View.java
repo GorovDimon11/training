@@ -28,8 +28,6 @@ public class View {
 
     }
 
-    //public static final ResourceBundle
-
     public void printMessage(String message){
         System.out.println(message);
     }
