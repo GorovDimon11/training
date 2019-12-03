@@ -22,7 +22,7 @@ public class InputNoteNoteBook {
     public void inputNote(Human human) {
         UtilityController utilityController =
                 new UtilityController(sc, view);
-        
+
         view.setBundle(utilityController.inputLanguageWithScanner(CHOOSE_LANGUAGE,REGEX_LANGUAGE));
 
         String str = (String.valueOf(View.bundle.getLocale()).equals("ua"))
