@@ -36,4 +36,16 @@ public class Cruise extends Travel {
     public void addCountryInList(String country){
         CountriesList.add(country);
     }
+
+    @Override
+    public String toString() {
+        return "\nCruise{" +
+                "\n    Liner='" + Liner + '\'' +
+                ",\n    CountriesList=" + CountriesList +
+                ",\n    Transport=" + super.getTransport() +
+                ",\n    Cost=" + super.getCost() +
+                ",\n    Days=" + super.getDays() +
+                ",\n    Food=" + super.getFood() +
+                '}';
+    }
 }

@@ -44,4 +44,14 @@ public class Travel {
     public void setFood(Food food) {
         this.food = food;
     }
+
+    @Override
+    public String toString() {
+        return "Travel{" +
+                "transport=" + transport +
+                ", Cost=" + Cost +
+                ", Days=" + Days +
+                ", food=" + food +
+                '}';
+    }
 }

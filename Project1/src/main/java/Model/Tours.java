@@ -28,4 +28,6 @@ public class Tours extends Travel {
     public int numberOfAttractions(){
         return this.AttractionsList.size();
     }
+
+
 }
