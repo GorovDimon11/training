@@ -20,9 +20,7 @@ public class Controller {
 
     public void processUser() {
         Scanner scanner = new Scanner(System.in);
-        //view.setBundle(inputLanguageWithScanner(CHOOSE_LANGUAGE,REGEX_LANGUAGE, scanner));
-
-
+        view.setBundle(inputLanguageWithScanner(CHOOSE_LANGUAGE,REGEX_LANGUAGE, scanner));
 
 
 

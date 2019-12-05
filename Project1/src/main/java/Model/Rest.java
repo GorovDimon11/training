@@ -1,28 +1,29 @@
 package Model;
 
+import lombok.*;
+
+@Getter
+@Setter
+@ToString
 public class Rest extends Travel {
     private String HotelName;
-    private int HotelStars;
+    private int hotelStars;
 
-    public Rest(Transport tr, int cost, int days, Food fd, String hotelName, int hotelStars) {
-        super(tr, cost, days, fd);
-        this.HotelName = hotelName;
-        this.HotelStars = hotelStars;
-    }
-
-    public String getHotelName() {
-        return HotelName;
-    }
-
-    public void setHotelName(String hotelName) {
+    public Rest(Transport transport, int cost, int days, Food food, String hotelName, int hotelStars) {
+        super(transport, cost, days, food);
         HotelName = hotelName;
+        this.hotelStars = hotelStars;
     }
 
-    public int getHotelStars() {
-        return HotelStars;
-    }
-
-    public void setHotelStars(int hotelStars) {
-        HotelStars = hotelStars;
+    @Override
+    public String toString() {
+        return "\nRest{" +
+                "\n    HotelName='" + HotelName + '\'' +
+                ",\n    hotelStars=" + hotelStars +
+                ",\n    Transport=" + super.getTransport() +
+                ",\n    Cost=" + super.getCost() +
+                ",\n    Days=" + super.getDays() +
+                ",\n    Food=" + super.getFood() +
+                '}';
     }
 }

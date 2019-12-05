@@ -1,33 +1,27 @@
 package Model;
 
 import java.util.ArrayList;
+import lombok.*;
 
+@Getter
+@Setter
+@ToString
 public class Tours extends Travel {
-    private ArrayList<String> AttractionsList = new ArrayList<String>();
+    private ArrayList<String> AttractionsList;
 
-    public Tours(Transport tr, int cost, int days, Food fd, ArrayList<String> attractionsList) {
-        super(tr, cost, days, fd);
-        this.AttractionsList = attractionsList;
-    }
-
-    public Tours(Transport tr, int cost, int days, Food fd) {
-        super(tr, cost, days, fd);
-    }
-
-    public ArrayList<String> getAttractionsList() {
-        return AttractionsList;
-    }
-
-    public void setAttractionsList(ArrayList<String> attractionsList) {
+    public Tours(Transport transport, int cost, int days, Food food, ArrayList<String> attractionsList) {
+        super(transport, cost, days, food);
         AttractionsList = attractionsList;
     }
 
-    public void addAttraction(String attr){
-        this.AttractionsList.add(attr);
+    @Override
+    public String toString() {
+        return "\nTours{" +
+                "\n    AttractionsList=" + AttractionsList +
+                ",\n    Transport=" + super.getTransport() +
+                ",\n    Cost=" + super.getCost() +
+                ",\n    Days=" + super.getDays() +
+                ",\n    Food=" + super.getFood() +
+                '}';
     }
-    public int numberOfAttractions(){
-        return this.AttractionsList.size();
-    }
-
-
 }
