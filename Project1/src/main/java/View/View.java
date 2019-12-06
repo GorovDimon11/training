@@ -3,8 +3,7 @@ package View;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import static View.ConstantMessages.INPUT_STRING_DATA;
-import static View.ConstantMessages.WRONG_INPUT_DATA;
+import static View.ConstantMessages.*;
 
 public class View {
 
@@ -41,17 +40,22 @@ public class View {
         return new String(concatString);
     }
 
-    public void printStringInput(String message) {
+    public void printStringOutput(String tr, String fd, int n1, int n2) {
         printMessage(concatenationString(
-                bundle.getString(INPUT_STRING_DATA),
-                bundle.getString(message)));
+                bundle.getString(OUTPUT_FIRST_PART_DATA),
+                tr,
+                bundle.getString(OUTPUT_SECOND_PART_DATA),
+                fd,
+                bundle.getString(OUTPUT_THIRD_PART_DATA),
+                Integer.toString(n1)," ",
+                bundle.getString(OUTPUT_FOURTH_PART_DATA),
+                Integer.toString(n2)," ",
+                bundle.getString(OUTPUT_LAST_PART_DATA)
+                ));
     }
 
-    public void printWrongStringInput(String message) {
-        printMessage(concatenationString(
-                bundle.getString(WRONG_INPUT_DATA),
-                bundle.getString(INPUT_STRING_DATA),
-                bundle.getString(message)));
+    public void printWrongLanguageInput(String message) {
+        printMessage(concatenationString(WRONG_LANGUAGE_DATA, message));
     }
 
 }

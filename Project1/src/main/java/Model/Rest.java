@@ -18,12 +18,23 @@ public class Rest extends Travel {
     @Override
     public String toString() {
         return "\nRest{" +
-                "\n    HotelName='" + HotelName + '\'' +
-                ",\n    hotelStars=" + hotelStars +
-                ",\n    Transport=" + super.getTransport() +
-                ",\n    Cost=" + super.getCost() +
-                ",\n    Days=" + super.getDays() +
-                ",\n    Food=" + super.getFood() +
+                "\n    HotelName = '" + HotelName + '\'' +
+                ",\n    hotelStars = " + hotelStars +
+                ",\n    Transport = " + super.getTransport() +
+                ",\n    Cost = " + super.getCost() +
+                ",\n    Days = " + super.getDays() +
+                ",\n    Food = " + super.getFood() +
+                '}';
+    }
+    @Override
+    public String toUAString() {
+        return "\nГотельний відпочинок{" +
+                "\n    Назва готелю = '" + HotelName + '\'' +
+                ",\n    Кількість зірок = " + hotelStars +
+                ",\n    Транспорт = " + super.getTransport() +
+                ",\n    Вартість = " + super.getCost() +
+                ",\n    Дні = " + super.getDays() +
+                ",\n    Тип харчування = " + super.getFood() +
                 '}';
     }
 }

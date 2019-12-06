@@ -16,13 +16,13 @@ public class Model {
         TripList.add(travel);
     }
 
-    public List<Travel> Filter(int days, List<Transport> transportList, List<Food> foodList) {
+    public List<Travel> Filter(int minDays, int maxDays, List<Transport> transportList, List<Food> foodList) {
         FilteredTripList =
                 TripList.stream()
                         .filter(t -> isRightTransport(transportList, t))
                         .filter(t -> isRightFood(foodList, t))
-                        .filter(t -> t.getDays() == days)
-                        .sorted(Comparator.comparing(Travel::getCost))
+                        .filter(t -> isRightDays(minDays, maxDays, t))
+                        .sorted(Comparator.comparing(Travel::getCost).thenComparing(Travel::getDays))
                         .collect(Collectors.toList());
 
         return FilteredTripList;
@@ -35,4 +35,10 @@ public class Model {
     public boolean isRightTransport(List<Transport> transportTypes, Travel travel) {
         return transportTypes.contains(travel.getTransport());
     }
+
+    public boolean isRightDays(int minDays, int maxDays, Travel travel) {
+        return (travel.getDays() >= minDays && travel.getDays() <= maxDays);
+    }
+
+
 }

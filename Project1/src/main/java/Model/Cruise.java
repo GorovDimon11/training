@@ -19,12 +19,23 @@ public class Cruise extends Travel {
     @Override
     public String toString() {
         return "\nCruise{" +
-                "\n    Liner='" + Liner + '\'' +
-                ",\n    CountriesList=" + CountriesList +
-                ",\n    Transport=" + super.getTransport() +
-                ",\n    Cost=" + super.getCost() +
-                ",\n    Days=" + super.getDays() +
-                ",\n    Food=" + super.getFood() +
+                "\n    Liner = '" + Liner + '\'' +
+                ",\n    CountriesList = " + CountriesList +
+                ",\n    Transport = " + super.getTransport() +
+                ",\n    Cost = " + super.getCost() +
+                ",\n    Days = " + super.getDays() +
+                ",\n    Food = " + super.getFood() +
+                '}';
+    }
+    @Override
+    public String toUAString() {
+        return "\nКруїз{" +
+                "\n    Лайнер = '" + Liner + '\'' +
+                ",\n    Список країн = " + CountriesList +
+                ",\n    Транспорт = " + super.getTransport() +
+                ",\n    Вартість = " + super.getCost() +
+                ",\n    Дні = " + super.getDays() +
+                ",\n    Тип харчування = " + super.getFood() +
                 '}';
     }
 }
