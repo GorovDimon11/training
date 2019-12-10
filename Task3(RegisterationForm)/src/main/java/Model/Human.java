@@ -5,15 +5,9 @@ import java.util.List;
 
 public class Human {
 
-    public enum Group {
-        FIRST, SECOND, THIRD
-    }
-
     private String Full_name;
     private String Surname;
     private String Firstname;
-
-
     private String Patronymic;
     private String NickName;
     private String Comment;
@@ -26,7 +20,7 @@ public class Human {
     private Date EditDate;
 
     public Human(String full_name, String nickName, String comment,
-                 Human.Group group, List telephones, String e_mail,
+                 Group group, List telephones, String e_mail,
                  String skype, Address address) {
 
         this.Full_name = full_name;
@@ -45,21 +39,14 @@ public class Human {
     }
 
     public String setFull_name(String full_name) {
-        String in = concatenationINString(this.Firstname, ".",this.Patronymic,".");
+        String in = concatenationString(this.Firstname.substring(0,1), ".",this.Patronymic.substring(0,1),".");
         return this.Full_name = concatenationString(this.Surname," ", in);
     }
-// TODO set FullName with StreamBuilder as: Surname + " " + N + "." + P + "."
+
     public String concatenationString(String... message){
         StringBuilder concatString = new StringBuilder();
         for(String v : message) {
             concatString = concatString.append(v);
-        }
-        return new String(concatString);
-    }
-    public String concatenationINString(String... message){
-        StringBuilder concatString = new StringBuilder();
-        for(String v : message) {
-            concatString = concatString.append(v.indexOf(0));
         }
         return new String(concatString);
     }
@@ -72,7 +59,7 @@ public class Human {
         Comment = comment;
     }
 
-    public void setGroup(Human.Group group) {
+    public void setGroup(Group group) {
         Group = group;
     }
 
@@ -116,9 +103,6 @@ public class Human {
     public String toString() {
         return "Human{" +
                 "Full_name='" + setFull_name(this.Full_name) + '\''+'\n' +
-                "\t Surname='" + Surname + '\''+'\n' +
-                "\t Firstname='" + Firstname + '\''+'\n' +
-                "\t Patronymic='" + Patronymic + '\''+'\n' +
                 "\t NickName='" + NickName + '\''+'\n' +
                 "\t Comment='" + Comment + '\''+'\n' +
                 "\t Group=" + Group + '\n' +

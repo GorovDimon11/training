@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import static View.ConstantMessages.INPUT_STRING_DATA;
 import static View.ConstantMessages.WRONG_INPUT_DATA;
+import static View.ConstantMessages.WRONG_LANGUAGE_DATA;
 
 public class View {
     static String MESSAGES_BUNDLE_NAME = "messages";
@@ -51,6 +52,10 @@ public class View {
                 bundle.getString(WRONG_INPUT_DATA),
                 bundle.getString(INPUT_STRING_DATA),
                 bundle.getString(message)));
+    }
+
+    public void printWrongLanguageInput(String message) {
+        printMessage(concatenationString(WRONG_LANGUAGE_DATA, message));
     }
 
 }

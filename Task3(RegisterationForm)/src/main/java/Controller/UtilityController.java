@@ -38,7 +38,7 @@ public class UtilityController {
         view.printMessage(message);
         while( !(scanner.hasNext() &&
                 (res = scanner.next()).matches(regex))) {
-            view.printWrongStringInput(message);
+            view.printWrongLanguageInput(message);
         }
         return Integer.parseInt(res);
     }

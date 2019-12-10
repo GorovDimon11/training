@@ -6,9 +6,7 @@ import View.View;
 import java.util.Scanner;
 
 import static Controller.RegexFilter.*;
-import static View.ConstantMessages.CHOOSE_LANGUAGE;
-import static View.ConstantMessages.NAME;
-import static View.ConstantMessages.NICKNAME;
+import static View.ConstantMessages.*;
 
 public class InputNoteNoteBook {
     private View view;
@@ -27,8 +25,10 @@ public class InputNoteNoteBook {
 
         String str = (String.valueOf(View.bundle.getLocale()).equals("ua"))
                 ? REGEX_NAME_UKR : REGEX_NAME_LAT;
+        human.setSurname(utilityController.inputStringValueWithScanner(SURNAME_NAME, str));
         human.setFirstname(utilityController.inputStringValueWithScanner
                 (NAME, str));
+        human.setPatronymic(utilityController.inputStringValueWithScanner(PATRONOMIC_NAME, str));
 
         human.setNickName(utilityController.inputStringValueWithScanner
                 (NICKNAME, REGEX_LOGIN));
