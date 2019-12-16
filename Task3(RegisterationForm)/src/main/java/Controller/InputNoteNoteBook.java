@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Human;
+import Model.NotUniqueNickException;
 import View.View;
 
 import java.util.Scanner;
@@ -11,6 +12,9 @@ import static View.ConstantMessages.*;
 public class InputNoteNoteBook {
     private View view;
     private Scanner sc;
+
+    private String firstName;
+    private String nickData;
 
     public InputNoteNoteBook(View view, Scanner sc) {
         this.view = view;
@@ -29,8 +33,17 @@ public class InputNoteNoteBook {
         human.setFirstname(utilityController.inputStringValueWithScanner
                 (NAME, str));
         human.setPatronymic(utilityController.inputStringValueWithScanner(PATRONOMIC_NAME, str));
+        while(true) {
+            try {
+                human.setNickName(utilityController.inputStringValueWithScanner
+                        (NICKNAME, REGEX_LOGIN));
+                break;
+            } catch (NotUniqueNickException e) {
+                e.printStackTrace();
+                System.out.println("Not Unique Nick " + e.getNickData());
+            }
+        }
 
-        human.setNickName(utilityController.inputStringValueWithScanner
-                (NICKNAME, REGEX_LOGIN));
     }
+
 }

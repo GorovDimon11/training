@@ -21,8 +21,8 @@ public class Human {
 
     public Human(String full_name, String nickName, String comment,
                  Group group, List telephones, String e_mail,
-                 String skype, Address address) {
-
+                 String skype, Address address) throws NotUniqueNickException{
+        if (DataBase.checkNick(nickName)){throw new NotUniqueNickException("Not Unique NickName", nickName);}
         this.Full_name = full_name;
         this.NickName = nickName;
         this.Comment = comment;
@@ -32,7 +32,6 @@ public class Human {
         this.Skype = skype;
         this.Address = address;
         EnterDate = new Date();
-
     }
 
     public Human() {
@@ -51,7 +50,8 @@ public class Human {
         return new String(concatString);
     }
 
-    public void setNickName(String nickName) {
+    public void setNickName(String nickName)throws NotUniqueNickException{
+        if (DataBase.checkNick(nickName)){ throw new NotUniqueNickException("Not Unique NickName", nickName);}
         NickName = nickName;
     }
 
