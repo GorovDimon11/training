@@ -1,0 +1,62 @@
+<!doctype html>
+<html  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Login</title>
+
+    <style type="text/css">
+        .wrapper{width:500px;margin-left:auto;margin-right:auto}
+        label{padding-left:0 !important}
+    </style>
+</head>
+<body>
+<div th:if="${param.error}" class="form-group row " role="alert">
+    <label class="col-md-1 col-form-label text-center"></label>
+    <div th:text="#{login.error}" class="col-md-7 alert alert-danger ">Invalid username or password</div>
+</div>
+
+<div th:if="${param.logout}" class="form-group row " role="alert">
+    <label class="col-md-1 col-form-label text-md-right"></label>
+    <div th:text="#{login.logout}" class="col-md-7 alert alert-primary">Successfully log out</div>
+</div>
+<div class="container" style="margin-top: 60px">
+
+    <div class="row wrapper">
+        <h1  th:text="#{label.form.loginTitle}">CashMachine</h1>
+        <h3 th:text="#{label.form.loginTitlePlease}">Please, login to continue</h3>
+
+
+        <form th:action="@{/login}" method="post" enctype="utf8" >
+
+         <br /><br />
+         <div class="form-group row" >
+            <label class="col-sm-2" th:text="Email">email</label>
+            <span class="col-sm-8"><input class="form-control" type='text' name='username' value='' placeholder="example@mail.com"/></span>
+         </div>
+         <br/><br/>
+         <div class="form-group row" >
+            <label class="col-sm-2" th:text="#{label.form.loginPass}">password</label>
+            <span class="col-sm-8"><input class="form-control" type='password' name='password' th:placeholder="#{label.form.loginPass}"/></span></span>
+         </div>
+            <br/><br/>
+            <input class="btn btn-primary" name="submit" type="submit" th:value="#{label.form.submit}" />
+        </form>
+
+        <br/>
+        <a class="btn btn-default" th:href="@{/registration}" th:text="#{label.form.loginSignUp}">Registrate</a>
+        <br/><br/> Current Locale :  <span th:text="${#locale}"></span><br/>
+        <span  style="margin-left: 10px"></span>
+        <div id="locale">
+            <a href="?lang=en">EN</a>
+            |
+            <a href="?lang=ua">UA</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Merchandiser</title>
+</head>
+<body>
+<h1 th:text="#{merchandiser.main.page.greeting}">merchandiserGreeting</h1>
+
+<div id="locale">
+    <a href="?lang=en">EN</a>
+    |
+    <a href="?lang=ua">UA</a>
+</div>
+<form th:action="@{/logout}" method="post">
+    <input class="button" type="submit" th:value="#{button.logout}"/>
+</form>
+
+</body>
+</html>

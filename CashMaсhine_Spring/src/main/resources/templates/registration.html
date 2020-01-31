@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII"/>
+    <title>Registration</title>
+    <style type="text/css">
+        .wrapper{width: 90%;margin-left:auto;margin-right:auto}
+        label{padding-left:0 !important}
+    </style>
+</head>
+<body>
+<!--
+<div th:if="${param.message != null}" class="alert alert-info" th:text="${param.message[0]}">message</div>
+
+<div th:if="${param.error != null}" class="alert alert-danger" th:text="${session[SPRING_SECURITY_LAST_EXCEPTION]}">error</div>
+-->
+<div th:if="${error}" class="form-group row text-center" role="alert">
+    <label class="col-md-4 col-form-label text-md-right"></label>
+    <div th:text="#{reg.email.error}" class="col-md-6 alert alert-danger ">The email address is already exists</div>
+</div>
+<div class="container" style="margin-top: 60px">
+    <div class="row wrapper">
+        <h1 th:text="#{label.form.title}">form</h1>
+
+        <br/>
+        <form th:action="@{/registration}" th:object="${user}" method="post" enctype="utf8" >
+
+            <div class="form-group row" >
+                <label class="col-sm-1" th:text="#{label.user.Name}">name</label>
+                <span class="col-sm-6"><input class="form-control" name="name" value="" required="required"/></span>
+                <!--<span id="NameError" class="alert alert-danger col-sm-4" style="display:none"></span>-->
+                <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-1" th:text="#{label.user.NameUkr}">nameUkr</label>
+                <span class="col-sm-6"><input class="form-control" name="nameInUkrainianLanguage" value="" required="required"/></span>
+                <!--<span id="NameInUkrainianLanguageError" class="alert alert-danger col-sm-4" style="display:none"></span>-->
+                <span class="text-danger" th:if="${#fields.hasErrors('nameInUkrainianLanguage')}" th:errors="*{nameInUkrainianLanguage}"></span>
+
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-1" th:text="Email">email</label>
+                <span class="col-sm-6"><input class="form-control" type="email" name="email" value="" required="required"/></span>
+                <span id="emailError" class="alert alert-danger col-sm-4" style="display:none"></span>
+                <span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-1" th:text="#{label.user.password}">password</label>
+                <span class="col-sm-6"><input class="form-control" id="password"  name="password" value="" type="password" required="required"/></span>
+                <span id="passwordError" class="alert alert-danger col-sm-4" style="display:none"></span>
+                <span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-1" th:text="#{label.user.confirmPass}">confirm</label>
+                <span class="col-sm-6"><input id="matchPassword" class="form-control" name="matchingPassword" value="" type="password" required="required"/></span>
+                <span id="globalError" class="alert alert-danger col-sm-4" style="display:none"></span>
+            </div>
+
+            <br/>
+            <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+            <button type="submit" class="btn btn-primary"  th:text="#{label.form.submit}" >submit</button>
+        </form>
+        <br/>
+        <a th:href="@{/login}" th:text="#{label.form.loginLink}">login</a>
+        <br/>
+        <span  style="margin-left: 50px"></span>
+        <div id="locale">
+            <a href="?lang=en">EN</a>
+            |
+            <a href="?lang=ua">UA</a>
+        </div>
+        <br/>
+    </div>
+
+</div>
+
+<script th:inline="javascript">
+    var serverContext = [[@{/}]];
+
+        $(document).ready(function () {
+            $('login').submit(function(event) {
+                register(event);
+            });
+
+            $(":password").keyup(function(){
+                if($("#password").val() != $("#matchPassword").val()){
+                    $("#globalError").show().html(/*[[#{PasswordMatches.user}]]*/);
+                }else{
+                    $("#globalError").html("").hide();
+                }
+            });
+
+        });
+
+    function register(event){
+        event.preventDefault();
+        $(".alert").html("").hide();
+        $(".error-list").html("");
+        if($("#password").val() != $("#matchPassword").val()){
+            $("#globalError").show().html(/*[[#{PasswordMatches.user}]]*/);
+            return false;
+        };
+    }
+
+</script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+</script>
+
+</body>
+</html>
