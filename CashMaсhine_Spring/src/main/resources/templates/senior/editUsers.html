@@ -1,0 +1,86 @@
+﻿<html  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII"/>
+    <title>Users</title>
+    <style type="text/css">
+        .wrapper{width: 90%;margin-left:auto;margin-right:auto}
+        label{padding-left:0 !important}
+    </style>
+</head>
+<body>
+<div class="container">
+    <nav class="navbar nav-pills navbar-expand-sm bg-dark navbar-dark fixed-top">
+        <a href="/senior" class="mx-3" th:text="#{button.main}">Logo</a>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/senior/users" th:text="#{senior.users}">Link</a>
+            </li>
+            <li class="nav-item">
+                <a  class="nav-link" href="/senior/x_report" th:text="#{senior.x}">Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/senior/z_report" th:text="#{senior.z}">Link</a>
+            </li>
+        </ul>
+        <form class="form-inline">
+            <h5 class="form-inline text-light">
+                <td th:if="#{lang }== '??lang_en??'"th:text="${logo_name}"></td>
+                <td th:unless="#{lang }== '??lang_en??'" th:text="${logo_nameUkr}"></td>
+            </h5>
+            <div id="locale" class="mx-3">
+                <a href="?lang=en">EN</a>
+                |
+                <a href="?lang=ua">UA</a>
+            </div>
+        </form>
+        <form th:action="@{/logout}" method="post">
+            <input role="button" class="btn btn-primary btn-sm" type="submit" th:value="#{button.logout}"/>
+        </form>
+    </nav>
+    <br/><br/><br/>
+<h1 th:text="#{senior.users}">users</h1>
+    <h3 class="text-danger" th:if="${error_update}">Error updating user role</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-dark table-striped">
+            <thead>
+            <tr class="table-active">
+                <th>id</th>
+                <th th:text="#{senior.users.name}"></th>
+                <th>Email</th>
+                <th th:text="#{senior.users.role}"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each = "user: ${users}">
+                <td th:text="${user.id}"></td>
+                <td th:if="#{lang }== '??lang_en??'" th:text="${user.name}"></td>
+                <td th:unless="#{lang }== '??lang_en??'" th:text="${user.nameInUkrainianLanguage}"></td>
+                <td th:text="${user.email}"></td>
+                <td>
+                    <form th:unless="${user.email} == ${current_user}" class="form-inline" th:action="@{/senior/updateUser}" th:object="${user}" method="post">
+                        <select class="form-control" id="userRoles" name="userRoles">
+                            <option th:each="role : ${roles}"
+                                    th:value="${role}" th:text="${role}"
+                                    th:selected="${role}==${user.role}"></option>
+                        </select>
+                        <input type="hidden" name="email" th:value="${user.email}">
+                        <p1><input class="button mx-5" type="submit" th:value="#{senior.users.update}"/></p1>
+                    </form>
+                    <span th:if="${user.email} == ${current_user}" th:text="${user.role}"></span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

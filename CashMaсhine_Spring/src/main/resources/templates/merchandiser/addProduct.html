@@ -1,0 +1,84 @@
+﻿<html  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII"/>
+    <title>Add Product</title>
+</head>
+<body>
+
+<div class="container">
+    <nav class="navbar nav-pills navbar-expand-sm bg-dark navbar-dark fixed-top">
+        <a href="/merchandiser" class="mx-3" th:text="#{button.main}">Logo</a>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a  class="nav-link" href="/merchandiser/new_product" th:text="#{merchandiser.new.product}">Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/merchandiser/all_products" th:text="#{merchandiser.all.product}">Link</a>
+            </li>
+        </ul>
+        <form class="form-inline">
+            <h5 class="form-inline text-light">
+                <td th:if="#{lang }== '??lang_en??'"th:text="${logo_name}"></td>
+                <td th:unless="#{lang }== '??lang_en??'" th:text="${logo_nameUkr}"></td>
+            </h5>
+            <div id="locale" class="mx-3">
+                <a href="?lang=en">EN</a>
+                |
+                <a href="?lang=ua">UA</a>
+            </div>
+        </form>
+        <form th:action="@{/logout}" method="post">
+            <input role="button" class="btn btn-primary btn-sm" type="submit" th:value="#{button.logout}"/>
+        </form>
+    </nav>
+    <br/><br/><br/>
+
+    <form th:action="@{/merchandiser/saveProduct}" th:object="${product}" class="form-group" method="post" enctype="utf8" >
+        <div th:if="${well_added}" class="alert alert-success" role="alert">
+            <label class="col-md-4 col-form-label text-md-right" th:text="#{success.add}"></label>
+        </div>
+        <div th:if="${error_add}" class="alert alert-danger" role="alert">
+            <label class="col-md-4 col-form-label text-md-right" th:text="#{error.add}"></label>
+        </div>
+        <br/><br/><br/>
+        <div class="form-group row" >
+            <label class="col-sm-1" th:text="#{merchandiser.label.product.name}">name</label>
+            <span class="col-sm-4"><input class="form-control" name="name" value="" required="required"/></span>
+            <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-1" th:text="#{merchandiser.label.product.nameUkr}">nameUkr</label>
+            <span class="col-sm-4"><input class="form-control" name="nameUkr" value="" required="required"/></span>
+            <span class="text-danger" th:if="${#fields.hasErrors('nameUkr')}" th:errors="*{nameUkr}"></span>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-1" th:text="#{merchandiser.label.product.price}">price</label>
+            <span class="col-sm-2"><input type="number" placeholder="1.0" step="0.01" min="0.1" max="500" class="form-control"  name="price" value="" required="required"/></span>
+            <span class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-1" th:text="#{merchandiser.label.product.quantity}">quantity</label>
+            <span class="col-sm-2"><input type="number" placeholder="1.0" step="0.01" min="0.1" max="500" class="form-control"  name="quantityInStock" value="" required="required"/></span>
+            <span class="text-danger" th:if="${#fields.hasErrors('quantityInStock')}" th:errors="*{quantityInStock}"></span>
+        </div>
+
+        <br/>
+<!--        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />-->
+        <button type="submit" class="btn btn-primary"  th:text="#{label.form.submit}" >submit</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

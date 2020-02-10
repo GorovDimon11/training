@@ -13,7 +13,7 @@ public class CashMachine {
     }
 
     @RequestMapping("/shit")
-    public String showHello(){
+    public String showHello() {
         return "shit.html";
     }
 }

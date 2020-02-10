@@ -18,9 +18,9 @@ import java.util.stream.Stream;
 @Entity // This tells Hibernate to make a table out of this class
 @Table(name = "users",
         uniqueConstraints = {@UniqueConstraint(columnNames = {"EMAIL"})})
-public class User implements UserDetails{
+public class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotBlank(message = "Name cannot be empty")
@@ -32,7 +32,6 @@ public class User implements UserDetails{
     @NotBlank(message = "Password cannot be empty")
     private String password;
 
-    //@ValidEmail
     @NotBlank(message = "Indicate your Email to login")
     @Column(name = "EMAIL")
     private String email;
@@ -42,7 +41,6 @@ public class User implements UserDetails{
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private UserRole role;
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

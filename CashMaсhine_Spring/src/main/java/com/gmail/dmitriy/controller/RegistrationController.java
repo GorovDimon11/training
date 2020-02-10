@@ -1,11 +1,12 @@
 package com.gmail.dmitriy.controller;
 
 import com.gmail.dmitriy.entity.User;
-import com.gmail.dmitriy.exceptions.UserExistException;
-import com.gmail.dmitriy.repository.UserRepository;
+import com.gmail.dmitriy.exception.UserExistException;
 import com.gmail.dmitriy.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,25 +20,19 @@ import javax.validation.Valid;
 @Slf4j
 @Controller
 public class RegistrationController {
-    @Autowired
-    private UserRepository userRepository;
 
     private final UserService userService;
-
-    @Autowired
-    private BCryptPasswordEncoder encoder;
 
     public RegistrationController(UserService userService) {
         this.userService = userService;
     }
-/*
-    @GetMapping("/registration")
-    public String registration() {
-        return "registration";
-    }*/
 
     @GetMapping(value = "/registration")
-    public String registration(Model model) {
+    public String registration(@AuthenticationPrincipal User user, Model model) {
+        if (user != null) {
+            SecurityContextHolder.clearContext();
+        }
+
         model.addAttribute("user", new User());
         return "registration";
     }
@@ -48,6 +43,7 @@ public class RegistrationController {
             return "registration";
         }
         try {
+            log.info("Added new user " + user.getEmail());
             userService.saveNewUser(user);
         } catch (UserExistException ex) {
             model.addAttribute("error", true);

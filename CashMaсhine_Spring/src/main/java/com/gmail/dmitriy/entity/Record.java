@@ -23,8 +23,6 @@ public class Record {
     private List<Сheque> сheques;
     @Enumerated(EnumType.STRING)
     private TypeOfRecord type;
-    @Digits(integer = 6, fraction = 2)
-    private BigDecimal totalAll;
     @ManyToOne
     private User user;
 

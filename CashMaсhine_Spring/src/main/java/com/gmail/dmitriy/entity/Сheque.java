@@ -21,11 +21,9 @@ public class Сheque {
     private Long idCheck;
     @NotNull
     private LocalDateTime dateTime;
-    @Digits(integer=6, fraction=2)
-    private BigDecimal totalPrice;
     @Enumerated(EnumType.STRING)
     private StatementOfCheck status = StatementOfCheck.OPEN;
-            // TODO
+    // TODO
     @ManyToOne
     private User user;
     @ManyToMany

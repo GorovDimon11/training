@@ -1,0 +1,50 @@
+﻿<html  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII"/>
+    <title>Merchandiser</title>
+    <style type="text/css">
+        .wrapper{width: 90%;margin-left:auto;margin-right:auto}
+        label{padding-left:0 !important}
+    </style>
+</head>
+<body>
+<div class="container">
+    <nav class="navbar nav-pills navbar-expand-sm bg-dark navbar-dark fixed-top">
+        <a href="/merchandiser" class="mx-3" th:text="#{button.main}">Logo</a>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a  class="nav-link" href="/merchandiser/new_product" th:text="#{merchandiser.new.product}">Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/merchandiser/all_products" th:text="#{merchandiser.all.product}">Link</a>
+            </li>
+        </ul>
+        <form class="form-inline">
+            <h5 class="form-inline text-light">
+                <td th:if="#{lang }== '??lang_en??'"th:text="${logo_name}"></td>
+                <td th:unless="#{lang }== '??lang_en??'" th:text="${logo_nameUkr}"></td>
+            </h5>
+            <div id="locale" class="mx-3">
+                <a href="?lang=en">EN</a>
+                |
+                <a href="?lang=ua">UA</a>
+            </div>
+        </form>
+        <form th:action="@{/logout}" method="post">
+            <input role="button" class="btn btn-primary btn-sm" type="submit" th:value="#{button.logout}"/>
+        </form>
+    </nav>
+    <br/><br/><br/>
+    <h1 th:text="#{merchandiser.main.page.greeting}">merchandiserGreeting</h1>
+</div>
+</body>
+</html>
