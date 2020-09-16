@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII"/>
@@ -16,50 +16,51 @@
 
 
 <div class="container">
-    <nav class="navbar nav-pills navbar-expand-sm bg-dark navbar-dark fixed-top">
-        <a href="/merchandiser" class="mx-3" th:text="#{button.main}">Logo</a>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a  class="nav-link" href="/merchandiser/new_product" th:text="#{merchandiser.new.product}">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/merchandiser/all_products" th:text="#{merchandiser.all.product}">Link</a>
-            </li>
-        </ul>
-        <form class="form-inline">
-            <h5 class="form-inline text-light">
-                <td th:if="#{lang }== '??lang_en??'"th:text="${logo_name}"></td>
-                <td th:unless="#{lang }== '??lang_en??'" th:text="${logo_nameUkr}"></td>
-            </h5>
-            <div id="locale" class="mx-3">
-                <a href="?lang=en">EN</a>
-                |
-                <a href="?lang=ua">UA</a>
-            </div>
-        </form>
-        <form th:action="@{/logout}" method="post">
-            <input role="button" class="btn btn-primary btn-sm" type="submit" th:value="#{button.logout}"/>
-        </form>
-    </nav>
+    <nav th:insert="merchandiser/merchandiserNavbar :: navbar"></nav>
     <br/><br/><br/>
 
-    <div th:if="${no_products}" class="form-group row text-center" role="alert">
-        <label class="col-md-3 col-form-label text-md-right"></label>
-        <div th:text="#{merchandiser.no.product.error}" class="col-md-6 alert alert-danger ">no product</div>
-    </div>
-    <div th:if="${no_products}" class="form-group row text-center" >
-        <label class="col-md-5 col-form-label text-md-right"></label>
-        <a href="/merchandiser/new_product" role="button" class="btn btn-dark"  th:text="#{merchandiser.new.product}">Dark</a>
-    </div>
-    <form th:action="@{/merchandiser/all_products/searchByName}" th:object="${name}" method="get" enctype="utf8" >
-<!--        "@{/${name}}"-->
-        <div class="input-group mb-3">
-                <input type="text" class="form-control" name="name" placeholder="Search product by name" aria-label="Имя получателя" aria-describedby="basic-addon2">
+
+    <td th:if="#{lang }== '??lang_en??'">
+        <form th:action="@{/merchandiser/all_products/searchByName}" th:object="${name}" method="get" enctype="utf8" >
+            <p th:text="#{search.by.name}"></p>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" name="name" placeholder=" Name " aria-label="Имя получателя" aria-describedby="basic-addon2">
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="submit" th:text="#{label.form.submit}">Кнопка</button>
                 </div>
+            </div>
+        </form>
+    </td>
+    <td th:if="#{lang }== '??lang_ua??'">
+        <form th:action="@{/merchandiser/all_products/searchByNameUkr}" th:object="${name}" method="get" enctype="utf8" >
+            <p th:text="#{search.by.name}"></p>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" name="nameUkr" placeholder=" Назва " aria-label="Имя получателя" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit" th:text="#{label.form.submit}">Кнопка</button>
+                </div>
+            </div>
+        </form>
+    </td>
+    <form th:action="@{/merchandiser/all_products/searchById}" th:object="${product}" method="get" enctype="utf8" >
+        <th th:text="#{search.by.id}"></th>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="id" placeholder=" Id " aria-label="Имя получателя" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit" th:text="#{label.form.submit}">Кнопка</button>
+            </div>
         </div>
     </form>
+
+    <div th:if="${no_product}" class="form-group row text-center" role="alert">
+        <label class="col-md-3 col-form-label text-md-right"></label>
+        <div th:text="#{merchandiser.no.product.error}" class="col-md-6 alert alert-danger ">no product</div>
+    </div>
+    <div th:if="${no_product}" class="form-group row text-center" >
+        <label class="col-md-5 col-form-label text-md-right"></label>
+        <a href="/merchandiser/new_product" role="button" class="btn btn-dark"  th:text="#{merchandiser.new.product}">Dark</a>
+    </div>
+    <div th:unless="${no_product}">
         <table class="table table-bordered table-hover table-dark table-striped">
             <thead>
             <tr class="table-active">
@@ -79,6 +80,8 @@
             </tr>
             </tbody>
         </table>
+    </div>
+
 </div>
 
 </body>

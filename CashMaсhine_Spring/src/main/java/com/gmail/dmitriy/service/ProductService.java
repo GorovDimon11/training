@@ -32,20 +32,18 @@ public class ProductService {
         }
     }
 
-    public Optional<Product> findByName(String name) throws ProductNotFoundException{
-        try{
-            return productRepository.findByName(name);
-        } catch (Exception ex) {
-            throw new ProductNotFoundException();
-        }
+    public Product findByName(String name) throws ProductNotFoundException{
+        Product product = productRepository.findByName(name).orElseThrow(() -> new ProductNotFoundException());
+        return product;
     }
 
-    public Optional<Product> findByNameUkr(String name) throws ProductNotFoundException{
-        try{
-            return productRepository.findByNameUkr(name);
-        } catch (Exception ex) {
-            throw new ProductNotFoundException();
-        }
+    public Product findByNameUkr(String name) throws ProductNotFoundException{
+        Product product = productRepository.findByNameUkr(name).orElseThrow(() -> new ProductNotFoundException());
+        return product;
     }
 
+    public Product findById(Long id) throws ProductNotFoundException{
+            Product product = productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException());
+            return product;
+    }
 }
